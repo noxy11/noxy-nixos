@@ -1,29 +1,30 @@
 function nixos-update-git --description 'Синхронизация NixOS и конфигов программ с GitHub'
-    # 1. Создаем правильную структуру папок в репозитории
+    # 1. Создаем структуру папок
     mkdir -p ~/.dotfiles/nixos
-    mkdir -p ~/.dotfiles/config/nvim
-    mkdir -p ~/.dotfiles/config/fastfetch
-    mkdir -p ~/.dotfiles/config/kitty
+    mkdir -p ~/.dotfiles/config
+
+    # 2. Копируем системные файлы NixOS и подпапку модулей внутрь nixos/
+    cp -u /etc/nixos/*.nix ~/.dotfiles/nixos/ 2>/dev/null
+    rsync -av --delete --exclude='.git' /etc/nixos/modules/ ~/.dotfiles/nixos/modules/ 2>/dev/null
+
+    # 3. Чисто и без ошибок копируем папки настроек программ
+    rsync -av --delete --exclude='.git' ~/.config/nvim/ ~/.dotfiles/config/nvim/ 2>/dev/null
+    rsync -av --delete ~/.config/fastfetch/ ~/.dotfiles/config/fastfetch/ 2>/dev/null
+    rsync -av --delete ~/.config/kitty/ ~/.dotfiles/config/kitty/ 2>/dev/null
+    
+    # 4. Копируем скрипты Fish
     mkdir -p ~/.dotfiles/config/fish
-
-    # 2. Копируем файлы NixOS
-    cp -u /etc/nixos/*.nix ~/.dotfiles/nixos/
-
-    # 3. Безопасно копируем конфиги программ (только файлы, игнорируя папки-ссылки)
-    cp -u ~/.config/nvim/*.nix ~/.config/nvim/*.lua ~/.config/nvim/*.json ~/.dotfiles/config/nvim/ 2>/dev/null
-    cp -u ~/.config/fastfetch/* ~/.dotfiles/config/fastfetch/ 2>/dev/null
-    cp -u ~/.config/kitty/* ~/.dotfiles/config/kitty/ 2>/dev/null
     cp -u ~/.config/fish/*.fish ~/.dotfiles/config/fish/ 2>/dev/null
     cp -u ~/.config/fish/functions/*.fish ~/.dotfiles/config/fish/ 2>/dev/null
 
-    # 4. Переходим в репозиторий и запускаем твою рабочую Git-цепочку
+    # 5. Git-цепочка и сборка
     cd ~/.dotfiles
     git add -A
     git stash
     git pull origin main --rebase
     git stash pop
     git add -A
-    nix flake update
+    nix flake update --flake ~/.dotfiles/nixos/
     git add -A
     sudo nixos-rebuild switch --flake ~/.dotfiles/nixos/#nixos
     git commit -m 'chore: auto-sync all configs and modules' --allow-empty
