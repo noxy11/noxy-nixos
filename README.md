@@ -1,2 +1,83 @@
+# noxy-nixos
+
+Привет! Это мой личный репозиторий с модульной конфигурацией операционной системы NixOS и индивидуальными настройками окружения. Здесь собраны мои конфиги для Kitty, Fish и Neovim (NvChad). 
+
+Система построена на базе Nix Flakes. Я принципиально не использую Home Manager, так как предпочитаю управлять конфигурацией приложений напрямую через стандартные файлы настроек. Однако, если вам удобнее использовать Home Manager, вы можете без проблем установить и настроить его самостоятельно поверх этой сборки.
+
+## Repository Structure
+## Repository Structure
+
+```text
+~/.dotfiles/
+├── config/
+│   ├── fastfetch/
+│   │   ├── 1.png
+│   │   ├── config.jsonc
+│   │   ├── NixOS.png
+│   │   ├── nixos_snowflake_colorful.svg
+│   │   └── nixos_snowflake_rewrite.svg
+│   ├── fish/
+│   │   ├── config.fish
+│   │   ├── nixos-clean.fish
+│   │   ├── nixos-optimize.fish
+│   │   ├── nixos-update.fish
+│   │   ├── nixos-update-git.fish
+│   │   ├── nixos-upgrade.fish
+│   │   ├── pokemon.fish
+│   │   └── y.fish
+│   ├── kitty/
+│   │   ├── current-theme.conf
+│   │   ├── kitty.conf
+│   │   ├── mocha.conf
+│   │   ├── scroll_mark.py
+│   │   ├── search.py
+│   │   └── themes/
+│   │       └── noctalia.conf
+│   └── nvim/
+│       ├── .stylua.toml
+│       ├── init.lua
+│       ├── lazy-lock.json
+│       ├── LICENSE
+│       ├── README.md
+│       └── lua/
+│           ├── autocmds.lua
+│           ├── chadrc.lua
+│           ├── mappings.lua
+│           ├── options.lua
+│           ├── configs/
+│           │   ├── conform.lua
+│           │   ├── lazy.lua
+│           │   └── lspconfig.lua
+│           └── plugins/
+│               └── init.lua
+├── nixos/
+│   ├── modules/
+│   │   ├── desktop.nix
+│   │   ├── fonts.nix
+│   │   ├── localization.nix
+│   │   ├── software.nix
+│   │   ├── system.nix
+│   │   └── users.nix
+│   ├── configuration.nix
+│   ├── flake.lock
+│   └── flake.nix
+├── install.fish
+└── README.md
+```
+
+
+## Installation
+
+```bash
 git clone git@github.com:noxy11/noxy-nixos.git ~/.dotfiles
 nix-shell -p fish --run "fish ~/.dotfiles/install.fish"
+```
+
+## System Maintenance Commands
+
+После установки в окружении Fish будут доступны следующие кастомные команды вместо стандартных:
+
+* `nixos-update` — Быстрое применение локальных изменений из `/etc/nixos/` без синхронизации с Git.
+* `nixos-update-git` — Полный перенос системных конфигов, настроек приложений, обновление lock-файла и отправка бэкапа на GitHub.
+* `nixos-upgrade` — Чистый апгрейд пакетов флейка из официальных репозиториев NixOS.
+* `nixos-clean` — Глубокая очистка старых поколений системы и оптимизация хранилища.
