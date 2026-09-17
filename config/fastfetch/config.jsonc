@@ -1,0 +1,69 @@
+{
+  "$schema": "https://github.com",
+  "logo": {
+    "source": "~/.config/fastfetch/NixOS.png",
+    "width": 24,
+    "height": 12,
+    "padding": {
+      "top": 1
+    }
+   }, 
+    "display": {
+        "separator": "  "
+    },
+
+    "modules": [
+        "break",
+        "break",
+	"break",
+
+        {
+            "type": "os",
+            "key": "  󰍹 OS",
+            "keyColor": "33"
+        },
+
+        {
+            "type": "kernel",
+            "key": "  󰌽 Kernel",
+            "keyColor": "33"
+        },
+
+        {
+            "type": "host",
+            "key": "  󰌢 Machine",
+            "keyColor": "33"
+        },
+
+        {
+            "type": "packages",
+            "key": "  󰏖 Packages",
+            "keyColor": "33"
+        },
+
+        {
+            "type": "cpu",
+            "key": "  󰻠 CPU",
+            "keyColor": "33"
+	},
+
+        {
+            "type": "memory",
+            "key": "  󰑭 Memory",
+            "keyColor": "33"
+        },
+        {
+	    "type": "disk",
+	    "key": "   hhd (/home)",
+	    "keyColor": "33",
+	    "folders": "/home"
+	},
+	{
+	    "type": "disk",
+	    "key": "   ssd (/)",
+	    "keyColor": "33",
+	    "folders": "/"
+	},
+        "break"
+    ]
+}
