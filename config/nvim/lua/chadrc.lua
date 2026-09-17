@@ -2,7 +2,7 @@
 local M = {}
 
 M.base46 = {
-  theme = "espresso",
+  theme = "jabuti",
   
   -- Жестко отключаем любые фоны для ключевых компонентов интерфейса NvChad
   hl_override = {

@@ -24,13 +24,17 @@
     enable = true;
   };
 
-  #Порталы gnome для коректной работы приложений
+  # Порталы для корректной работы приложений в Niri
   xdg.portal = {
     enable = true;
     xdgOpenUsePortal = true;
-    extraPortals = with pkgs; [
-      xdg-desktop-portal-gnome
-      xdg-desktop-portal-gtk
+    config = {
+      common = {
+        default = [ "gtk" ];
+      };
+    };
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
     ];
   };
 

@@ -10,6 +10,15 @@
   #Добавляет flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+  #Включает gamemod
+  programs.gamemode.enable = true;
+
+  # Управление питанием процессора
+  powerManagement.cpuFreqGovernor = "performance";
+
+  # Сжатие памяти в ОЗУ
+  zramSwap.enable = true;
+
   #Настройка системного загрузчика
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -26,6 +35,17 @@
     automatic = true;           
     dates     = "weekly";          
     options   = "--delete-older-than 7d"; 
+  };
+  
+  # Драйверы и аппаратное ускорение видеокарты AMD
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+    extraPackages = with pkgs; [
+      mesa
+      libva-vdpau-driver
+      libvdpau-va-gl
+    ];
   };
 }
 

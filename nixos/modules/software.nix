@@ -22,6 +22,10 @@
      usbutils
      sing-box
      repgrep
+     psmisc
+     mesa-demos
+     radeontop
+     nvtopPackages.full
      
      #Терменал/Кастомизация
      kitty
