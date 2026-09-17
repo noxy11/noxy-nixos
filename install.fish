@@ -18,8 +18,15 @@ echo "[УСПЕХ] Символическая ссылка для модулей
 # Проверяем наличие папки конфигурации пользователя
 mkdir -p ~/.config
 
+# Полная глубокая очистка окружения Neovim (NvChad) от старого кэша и плагинов
+echo "==> Очистка старого кэша и данных Neovim для чистой установки NvChad..."
+rm -rf ~/.config/nvim
+rm -rf ~/.local/share/nvim
+rm -rf ~/.local/state/nvim
+rm -rf ~/.cache/nvim
+
 # Пересоздаем ссылки для приложений, чтобы избежать конфликтов конфигурации
-rm -rf ~/.config/nvim ~/.config/kitty ~/.config/fastfetch
+rm -rf ~/.config/kitty ~/.config/fastfetch
 ln -s ~/.dotfiles/config/nvim ~/.config/nvim
 ln -s ~/.dotfiles/config/kitty ~/.config/kitty
 ln -s ~/.dotfiles/config/fastfetch ~/.config/fastfetch
