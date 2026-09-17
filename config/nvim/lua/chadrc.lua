@@ -1,24 +1,34 @@
--- This file needs to have same structure as nvconfig.lua 
--- https://github.com/NvChad/ui/blob/v3.0/lua/nvconfig.lua
--- Please read that file to know all available options :( 
-
 ---@type ChadrcConfig
 local M = {}
 
 M.base46 = {
-	theme = "chadtain",
-
-	-- hl_override = {
-	-- 	Comment = { italic = true },
-	-- 	["@comment"] = { italic = true },
-	-- },
+  theme = "espresso",
+  
+  -- Жестко отключаем любые фоны для ключевых компонентов интерфейса NvChad
+  hl_override = {
+    Normal = { bg = "NONE" },
+    NormalFloat = { bg = "NONE" },
+    NvimTreeNormal = { bg = "NONE" },
+    NvimTreeNormalNC = { bg = "NONE" },
+    LineNr = { bg = "NONE", fg = "comment" },
+    CursorLineNr = { bg = "NONE" },
+    SignColumn = { bg = "NONE" },
+    FoldColumn = { bg = "NONE" },
+    WinSeparator = { bg = "NONE", fg = "comment" },
+    EndOfBuffer = { bg = "NONE" },
+    NonText = { bg = "NONE" },
+    StatusLine = { bg = "NONE" },
+    StatusLineNC = { bg = "NONE" },
+    Comment = { italic = true },
+    ["@comment"] = { italic = true },
+  },
 }
 
--- M.nvdash = { load_on_startup = true }
--- M.ui = {
---       tabufline = {
---          lazyload = false
---      }
--- }
+M.nvdash = { load_on_startup = true }
+
+-- Включаем общую прозрачность UI-компонентов NvChad
+M.ui = {
+  transparency = true,
+}
 
 return M
