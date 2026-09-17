@@ -17,7 +17,7 @@ function nixos-update-git --description 'Синхронизация NixOS и к�
     cp -u ~/.config/fish/*.fish ~/.dotfiles/config/fish/ 2>/dev/null
     cp -u ~/.config/fish/functions/*.fish ~/.dotfiles/config/fish/ 2>/dev/null
 
-    # 5. Git-цепочка и сборка
+    # 5. Git-цепочка и сборка (с промежуточным индексированием файлов для Flakes)
     cd ~/.dotfiles
     git add -A
     git stash
