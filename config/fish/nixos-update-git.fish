@@ -1,6 +1,6 @@
 function nixos-update-git --description 'Полная синхронизация системы, программ и отправка на GitHub'
-    # Копируем свежие файлы конфигурации из /etc/nixos в дотфайлы
-    cp -u /etc/nixos/*.nix ~/.dotfiles/nixos/ 2>/dev/null
+    # Копируем ТОЛЬКО configuration.nix
+    cp -u /etc/nixos/configuration.nix ~/.dotfiles/nixos/ 2>/dev/null
 
     # Копируем настройки приложений
     rsync -av --delete --exclude='.git' ~/.config/nvim/ ~/.dotfiles/config/nvim/ 2>/dev/null
@@ -12,11 +12,11 @@ function nixos-update-git --description 'Полная синхронизация
     cp -u ~/.config/fish/*.fish ~/.dotfiles/config/fish/ 2>/dev/null
     cp -u ~/.config/fish/functions/*.fish ~/.dotfiles/config/fish/ 2>/dev/null
 
-    # Цепочка Git и сборка
+    # Цепочка Git с умным слиянием (стратегия 'ours' отдает приоритет локальным конфигам)
     cd ~/.dotfiles
     git add -A
     git stash
-    git pull origin main --rebase
+    git pull origin main --rebase -X ours
     git stash pop
     git add -A
     nix flake update --flake ~/.dotfiles/nixos/ 2>/dev/null
