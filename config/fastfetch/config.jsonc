@@ -2,7 +2,7 @@
   "$schema": "https://github.com",
   "logo": {
     "source": "~/.config/fastfetch/NixOS.png",
-    "width": 24,
+    "width": 26,
     "height": 12,
     "padding": {
       "top": 1
@@ -43,6 +43,7 @@
 
         {
             "type": "cpu",
+            "format":"{1}",
             "key": "  󰻠 CPU",
             "keyColor": "33"
 	},
