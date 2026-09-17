@@ -76,7 +76,7 @@
 ## Installation
 
 ```bash
-git clone https://github.com/noxy11/noxy-nixos 
+git clone https://github.com/noxy11/noxy-nixos ~/.dotfiles
 nix-shell -p fish --run "fish ~/.dotfiles/install.fish"
 ```
 
