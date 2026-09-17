@@ -3,7 +3,7 @@
   imports =
     [ 
       #Импорт конфигурации железа
-      ./hardware-configuration.nix
+      /etc/nixos/hardware-configuration.nix
 
       #Система разделенна на модули
       ./modules/system.nix #Flakes/kernel/boot/network
