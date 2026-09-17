@@ -18,6 +18,6 @@ function nixos-update-git --description 'Полная синхронизация
     nix flake update --flake ~/.dotfiles/nixos/ 2>/dev/null
     git add -A
     sudo nixos-rebuild switch --flake "path:/home/noxy/.dotfiles/nixos/#nixos" --impure
-    git commit -m 'chore: auto update' --allow-empty
+    git commit -m ' auto-update ' --allow-empty
     git push origin main $argv
 end
