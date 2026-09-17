@@ -24,15 +24,15 @@
       options = [ "subvol=nix" ];
     };
 
-  fileSystems."/home" =
-    { device = "/dev/disk/by-uuid/31cca837-dc57-4cd9-84d0-e21c5e5c6df6";
-      fsType = "btrfs";
-    };
-
   fileSystems."/boot" =
     { device = "/dev/disk/by-uuid/0977-D5C2";
       fsType = "vfat";
       options = [ "fmask=0077" "dmask=0077" ];
+    };
+
+  fileSystems."/home" =
+    { device = "/dev/disk/by-uuid/31cca837-dc57-4cd9-84d0-e21c5e5c6df6";
+      fsType = "btrfs";
     };
 
   swapDevices = [ ];
