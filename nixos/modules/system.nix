@@ -13,11 +13,16 @@
   #Включает gamemod
   programs.gamemode.enable = true;
 
-  # Управление питанием процессора
+  #Управление питанием процессора
   powerManagement.cpuFreqGovernor = "performance";
 
-  # Сжатие памяти в ОЗУ
-  zramSwap.enable = true;
+  #Включение zram 
+  zramSwap = {
+  enable = true;
+  algorithm = "zstd"; # Самый быстрый алгоритм сжатия
+  memoryPercent = 50; # Выделяем до половины объема ОЗУ под сжатый кэш
+  };
+
 
   #Настройка системного загрузчика
   boot.loader.systemd-boot.enable = true;
@@ -29,7 +34,15 @@
   #Настройка сети
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
-  
+  nix.settings = {
+  max-jobs = "auto";    
+  cores = 0;          
+  };
+
+  # Отключение IPv6 
+  boot.kernelParams = [ "ipv6.disable=1" ];
+
+
   #Отчистка конфигов nixos
   nix.gc = {
     automatic = true;           
@@ -41,10 +54,9 @@
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
-    extraPackages = with pkgs; [
-      mesa
-      libva-vdpau-driver
-      libvdpau-va-gl
+    extraPackages = with pkgs; [      
+      libva-vdpau-driver         
+      libva-utils
     ];
   };
 }
