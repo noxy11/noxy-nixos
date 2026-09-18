@@ -15,7 +15,6 @@
      wget vim neovim git curl
      trash-cli
      xdg-user-dirs
-     wl-clipboard
      networkmanagerapplet
      pavucontrol
      util-linux
@@ -26,7 +25,10 @@
      mesa-demos
      radeontop
      nvtopPackages.full
-     
+     playerctl
+     jq
+     bibata-cursors
+
      #Терменал/Кастомизация
      kitty
      fish
@@ -35,18 +37,31 @@
      btop
      cmatrix
      cava
-
-     #Wayland/Система
+     tty-clock
+     
+     #Wayland/X11
      waybar
      awww
      swaybg
-     fuzzel
      mako
      swaylock
      xwayland-satellite
      slurp
      grim
      noctalia
+     nwg-displays
+     hyprpolkitagent
+     hyprpicker
+     cliphist
+     wlsunset
+     wl-clipboard
+     wl-screenrec
+     wl-mirror
+     libnotify
+     playerctl 
+     brightnessctl
+     xsetroot
+     feh
 
      #Мои приложения 
      chromium
@@ -57,6 +72,7 @@
      obs-studio
      vscodium
      mpv
+     fuzzel
 
      #Компиляторы
      cmake gcc clang llvm

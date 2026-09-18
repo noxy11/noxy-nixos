@@ -11,6 +11,9 @@
   #Включаем niri
   programs.niri.enable = true;
 
+  #Включаем hyperland
+  programs.hyprland.enable = true;
+
   #Включаем shell терменала fish
   programs.fish.enable = true;
   
@@ -22,9 +25,10 @@
   services.xserver.enable = true;
   services.displayManager.sddm = {
     enable = true;
+    
   };
 
-  # Порталы для корректной работы приложений в Niri
+  # Порталы для корректной работы приложений niri/hyprland
   xdg.portal = {
     enable = true;
     xdgOpenUsePortal = true;
@@ -32,8 +36,16 @@
       common = {
         default = [ "gtk" ];
       };
+      hyprland = {
+        default = [ "hyprland" "gtk" ];
+      };
+      niri = {
+        default = [ "gnome" "gtk" ];
+      };
     };
     extraPortals = [
+      pkgs.xdg-desktop-portal-hyprland
+      pkgs.xdg-desktop-portal-gnome
       pkgs.xdg-desktop-portal-gtk
     ];
   };
